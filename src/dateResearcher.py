@@ -9,12 +9,14 @@ import re
 from tools.io import ask_for_place, ask_for_dates
 from tools.selector import select_lang, set_date_range, set_place, get_next_page_button
 from tools.validator import clean_property_card
+from config.config import webpage_url
+from config.xpaths import searchButtonXPATH, hotelPageElementsXPATH
 
 
 def run():
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.maximize_window()
-    driver.get("https://www.booking.com")
+    driver.get(webpage_url)
     time.sleep(2)
 
     file = open('output/research.csv', 'a+', newline ='')
@@ -29,18 +31,18 @@ def run():
     arrivalDate, departureDate = ask_for_dates()
     set_date_range(driver, arrivalDate, departureDate)
 
-    searchButton = driver.find_element(By.XPATH, f'//*[@id="frm"]/div[1]/div[4]/div[2]/button')
+    searchButton = driver.find_element(By.XPATH, searchButtonXPATH)
     searchButton.click()
     time.sleep(8)
-
-    # Get all Property Card elements in the Hotel Page
-    hotelPageElements = driver.find_elements(By.XPATH, f'//*[@data-testid="property-card"]')
-    time.sleep(5)
-    hotelPageElements = [clean_property_card(hpe.text) for hpe in hotelPageElements if hpe.text != ""]
 
     totalProperties = 0
     availablePage = True
     while availablePage:
+        # Get all Property Card elements in the Hotel Page
+        hotelPageElements = driver.find_elements(By.XPATH, hotelPageElementsXPATH)
+        time.sleep(3)
+        hotelPageElements = [clean_property_card(hpe.text) for hpe in hotelPageElements if hpe.text != ""]
+
         resortsInfo_list = []
         for hpe in hotelPageElements:
             resortsInfo_list.append(

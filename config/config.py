@@ -1,3 +1,5 @@
+webpage_url = "https://www.booking.com"
+
 list_to_remove_property_card = [
     "Opens in new window\n",
     "You can cancel later, so lock in this great price today!",
