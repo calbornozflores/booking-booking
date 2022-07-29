@@ -7,7 +7,7 @@ import time
 import csv
 import re
 from tools.io import ask_for_place, ask_for_dates
-from tools.selector import select_lang, set_date_range, set_place, get_next_page_button
+from tools.selector import select_lang, set_date_range, set_place, get_next_page_button, get_property_number
 from tools.validator import clean_property_card
 from config.config import webpage_url
 from config.xpaths import searchButtonXPATH, hotelPageElementsXPATH
@@ -35,7 +35,8 @@ def run():
     searchButton.click()
     time.sleep(8)
 
-    totalProperties = 0
+    totalProperties = get_property_number(driver)
+    print(totalProperties)
     availablePage = True
     while availablePage:
         # Get all Property Card elements in the Hotel Page
@@ -55,7 +56,6 @@ def run():
         if availablePage:
             nextPageButton.click()
             time.sleep(8)
-    print(totalProperties)
 
     file.close()
     driver.close()

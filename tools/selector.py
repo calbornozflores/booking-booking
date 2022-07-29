@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+import re
 import time
 
 
@@ -119,3 +120,17 @@ def get_next_page_button(driver):
     except:
         nextPageButton = None
     return nextPageButton
+
+
+def get_property_number(driver):
+    """
+    Funtion to get the number of available properties.
+    """
+    pageElements = driver.find_element(By.XPATH, f'//*[@id="right"]').text.split("\n")
+    propertyNumberElement = [x for x in pageElements if "properties found" in x][0].replace(",", "")
+    properties_found = re.findall(r"([\d.+-/]+)\s*properties", propertyNumberElement)[0]
+    try:
+        properties_found = int(properties_found)
+    except:
+        print("Number of properties not found")
+    return properties_found
