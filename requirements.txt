@@ -1,5 +1,7 @@
-selenium
-webdriver_manager
-progressbar
+csv
 logging
+progressbar
 re
+selenium
+time
+webdriver_manager

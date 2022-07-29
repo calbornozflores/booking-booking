@@ -36,7 +36,6 @@ def run():
     time.sleep(8)
 
     totalProperties = get_property_number(driver)
-    print(totalProperties)
     availablePage = True
     while availablePage:
         # Get all Property Card elements in the Hotel Page
