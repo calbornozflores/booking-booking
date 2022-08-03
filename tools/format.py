@@ -1,3 +1,5 @@
+import pandas as pd
+
 extra_info_substr = [
     "Breakfast included",
     "Travel Sustainable property",
@@ -39,30 +41,33 @@ def formatting():
             hotelInfo["hotel_name"] = line_list[0]
             try:
                 rankDescriptionField = [x for x in line_list if any(rd in x for rd in rank_description)][0]
+                #print(rankDescriptionField)
                 if any(c.isdigit() for c in rankDescriptionField):
                     rankDesciption, rankNumber = rankDescriptionField.split(" ")
                     hotelInfo["rank_description"] = rankDesciption
                     try:
-                        hotelInfo["rank_value"] = int(rankNumber)
+                        hotelInfo["rank_value"] = float(rankNumber)
                     except:
                         pass
                 else:
                     try:
-                        hotelInfo["rank_value"] = int(line_list[ line_list.index(rankDescriptionField) - 1 ])
+                        hotelInfo["rank_description"] = rankDesciption
+                        hotelInfo["rank_value"] = float(line_list[ line_list.index(rankDescriptionField) - 1 ])
                     except:
                         pass
             except:
                 pass
             for k in matchStrField.keys():
                 try:
-                    xField = [x for i, x in enumerate(line_list) if k in x][0]
+                    xField = [x for [i, x] in enumerate(line_list) if k in x][0]
                     hotelInfo[matchStrField[k]] = xField
                     if k == "taxes":
-                        hotelInfo["price"] = line_list[ line_list.index(xField) - 1 ]
+                        hotelInfo["price"] = line_list[line_list.index(xField) - 1]
                 except:
                     pass
             df_list.append(hotelInfo)
-        print(hotelInfo)
+    hotel_df = pd.DataFrame(df_list) #print(df_list)    hotel_df.head()
     file.close()
+    return hotel_df
 
 formatting()
