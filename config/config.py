@@ -12,3 +12,30 @@ list_to_remove_property_card = [
 list_to_replace_property_card = [
     "Show on map"
 ]
+
+extra_info_substr = [
+    "Breakfast included",
+    "Travel Sustainable property",
+    "Location",
+    "Getaway Deal",
+    "Duplex Apartment",
+    "Free cancellation",
+    "FREE cancellation",
+    "left at this price on our site",
+]
+
+rank_description = [
+    "New to Booking.com",
+    "Exceptional",
+    "Wonderful",
+    "Excellent",
+    "Very Good",
+    "Good",
+]
+
+matchStrField = {
+    "center": "relative_location",
+    "nights": "nights",
+    "review": "reviews",
+    "taxes": "taxes",
+}

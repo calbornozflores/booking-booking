@@ -13,6 +13,7 @@ from tools.selector import select_lang, set_date_range, set_place, get_next_page
 from tools.validator import clean_property_card
 from config.config import webpage_url
 from config.xpaths import searchButtonXPATH, hotelPageElementsXPATH
+from tools.format import formatting
 
 
 def run():
@@ -75,4 +76,5 @@ def run():
     
     file.close()
     driver.close()
+    formatting()
     bar.finish()
