@@ -1,31 +1,5 @@
 import pandas as pd
-
-extra_info_substr = [
-    "Breakfast included",
-    "Travel Sustainable property",
-    "Location",
-    "Getaway Deal",
-    "Duplex Apartment",
-    "Free cancellation",
-    "FREE cancellation",
-    "left at this price on our site",
-]
-
-rank_description = [
-    "New to Booking.com",
-    "Exceptional",
-    "Wonderful",
-    "Excellent",
-    "Very Good",
-    "Good",
-]
-
-matchStrField = {
-    "center": "relative_location",
-    "nights": "nights",
-    "review": "reviews",
-    "taxes": "taxes",
-}
+from config.config import extra_info_substr, rank_description, matchStrField
 
 
 def formatting():
@@ -41,7 +15,6 @@ def formatting():
             hotelInfo["hotel_name"] = line_list[0]
             try:
                 rankDescriptionField = [x for x in line_list if any(rd in x for rd in rank_description)][0]
-                #print(rankDescriptionField)
                 if any(c.isdigit() for c in rankDescriptionField):
                     rankDesciption, rankNumber = rankDescriptionField.split(" ")
                     hotelInfo["rank_description"] = rankDesciption
@@ -51,7 +24,7 @@ def formatting():
                         pass
                 else:
                     try:
-                        hotelInfo["rank_description"] = rankDesciption
+                        hotelInfo["rank_description"] = rankDescriptionField
                         hotelInfo["rank_value"] = float(line_list[ line_list.index(rankDescriptionField) - 1 ])
                     except:
                         pass
@@ -66,8 +39,7 @@ def formatting():
                 except:
                     pass
             df_list.append(hotelInfo)
-    hotel_df = pd.DataFrame(df_list) #print(df_list)    hotel_df.head()
+    hotel_df = pd.DataFrame(df_list)
     file.close()
-    return hotel_df
+    hotel_df.to_csv("output/research_table.csv", index = False)
 
-formatting()
