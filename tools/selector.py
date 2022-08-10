@@ -54,7 +54,7 @@ def set_date_range(driver, arrivalDate, departureDate):
                     dayButtom = driver.find_element(By.XPATH, f'//*[@id="frm"]/div[1]/div[2]/div[2]/div/div/div[3]/div[1]/table/tbody/tr[{i}]/td[{j}]')
                     day = dayButtom.get_attribute("data-date")
                     if day == arrivalDate and pickedlDates[0] == False:
-                        logging.info(f"Arrivall Date found: {arrivalDate}")
+                        logging.info(f"Arrival Date found: {arrivalDate}")
                         pickedlDates[0] = True
                         dayButtom.click()
                     elif day == departureDate and pickedlDates[1] == False:
@@ -70,7 +70,7 @@ def set_date_range(driver, arrivalDate, departureDate):
                     dayButtom = driver.find_element(By.XPATH, f'//*[@id="frm"]/div[1]/div[2]/div[2]/div/div/div[3]/div[2]/table/tbody/tr[{i}]/td[{j}]')
                     day = dayButtom.get_attribute("data-date")
                     if day == arrivalDate and pickedlDates[0] == False:
-                        logging.info(f"Arrivall Date found: {arrivalDate}")
+                        logging.info(f"Arrival Date found: {arrivalDate}")
                         pickedlDates[0] = True
                         dayButtom.click()
                     elif day == departureDate and pickedlDates[1] == False:

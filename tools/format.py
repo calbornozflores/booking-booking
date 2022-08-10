@@ -3,6 +3,10 @@ from config.config import extra_info_substr, rank_description, matchStrField
 
 
 def formatting():
+    """
+    Function to give a tabular format to the info initially gathered.
+    It uses default input and output file names.
+    """
     file = open('output/research.csv', 'r', newline ='')
     lines = file.readlines()
     df_list = []
@@ -40,6 +44,9 @@ def formatting():
                     pass
             df_list.append(hotelInfo)
     hotel_df = pd.DataFrame(df_list)
+    hotel_df["taxes"] = hotel_df["taxes"].str.extract(r'([1-9]+,[0-9]+)')
+    hotel_df["price"] = hotel_df["price"].str.split(" ").str[-1]
+    hotel_df["reviews"] = hotel_df["reviews"].str.replace(",", "").str.extract(r'(\d+)')
     file.close()
     hotel_df.to_csv("output/research_table.csv", index = False)
 
