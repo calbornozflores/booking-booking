@@ -1,6 +1,6 @@
 # booking-booking
 
-Easy approach with selenium to get hotels from Booking webpage base on a `Country, City`, `Arrival Date` and `Departure Date`.
+Easy approach with Selenium to get hotels from Booking webpage based on a `Country, City`, `Arrival Date` and `Departure Date`.
 
 ## Requirements
 
