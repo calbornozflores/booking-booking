@@ -12,7 +12,10 @@ def formatting():
     df_list = []
     for line_list in lines:
         hotelInfo = {}
-        line_list = line_list.split(";")[:-1]
+        line_list = line_list.split(";")
+        arrivalDate, departureDate = line_list[-2:]
+        departureDate = departureDate[:-2]
+        line_list = line_list[:-3]
         line_list = [ele for ele in line_list if ele != ""]
         line_list = [ele for ele in line_list if not any(ext in ele for ext in extra_info_substr)]
         if len(line_list) > 0:
@@ -47,6 +50,8 @@ def formatting():
     hotel_df["taxes"] = hotel_df["taxes"].str.extract(r'([1-9]+,[0-9]+)')
     hotel_df["price"] = hotel_df["price"].str.split(" ").str[-1]
     hotel_df["reviews"] = hotel_df["reviews"].str.replace(",", "").str.extract(r'(\d+)')
+    hotel_df["arrivalDate"] = arrivalDate
+    hotel_df["departureDate"] = departureDate
     file.close()
     hotel_df.to_csv("output/research_table.csv", index = False)
 
