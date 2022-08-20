@@ -56,6 +56,7 @@ def run():
         resortsInfo_list = []
         for hpe in hotelPageElements:
             hpe_content = hpe.split("\n")
+            hpe_content = hpe_content + [arrivalDate, departureDate]
             resortsInfo_list.append(
                 hpe_content
             )
