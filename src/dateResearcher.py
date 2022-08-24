@@ -39,6 +39,14 @@ def run():
     searchButton.click()
     time.sleep(8)
 
+    single_run(driver, file, write, arrivalDate, departureDate)
+
+    file.close()
+    driver.close()
+    formatting()
+
+
+def single_run(driver, file, write, arrivalDate, departureDate):
     totalProperties = get_property_number(driver)
 
     bar = progressbar.ProgressBar(maxval = totalProperties, \
@@ -75,7 +83,4 @@ def run():
             nextPageButton.click()
             time.sleep(8)
     
-    file.close()
-    driver.close()
-    formatting()
     bar.finish()
