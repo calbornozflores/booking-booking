@@ -15,7 +15,7 @@ from config.xpaths import searchButtonXPATH, hotelPageElementsXPATH
 from tools.format import formatting
 
 
-def run(input_place, arrivalDate, departureDate):
+def run(input_place, arrivalDate, departureDate, displayed_city):
     logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.maximize_window()
@@ -28,7 +28,7 @@ def run(input_place, arrivalDate, departureDate):
     selected_lang = select_lang(driver)
     print(f"Selected Lang: {selected_lang}")
 
-    set_place(driver, input_place)
+    set_place(driver, input_place, displayed_city)
 
     set_date_range(driver, arrivalDate, departureDate)
 

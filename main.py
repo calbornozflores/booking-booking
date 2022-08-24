@@ -8,7 +8,7 @@ def main():
 
     parser.add_option("-c", "--city", dest = "city",
                       type = "str",
-                      help = "[Country, City] to travel")
+                      help = "[City, Country] to travel")
 
     parser.add_option("-a", "--arrivalDate", dest = "arrival",
                       type = "str",
@@ -17,6 +17,11 @@ def main():
     parser.add_option("-d", "--departureDate", dest = "departure",
                       type = "str",
                       help = "Departure Date in format %Y-%d-%d")
+
+    parser.add_option("-o", "--option", dest = "displayed_city",
+                      type = "int",
+                      help = "Index for Suggesteds Displayed City (typically in [1-4])")
+
 
     (options, args) = parser.parse_args()
 
@@ -31,7 +36,9 @@ def main():
         arrivalDate = options.arrival
         departureDate = options.departure
 
-    run(input_place, arrivalDate, departureDate)
+    displayed_city = options.displayed_city
+
+    run(input_place, arrivalDate, departureDate, displayed_city)
 
 
 if __name__== "__main__":
