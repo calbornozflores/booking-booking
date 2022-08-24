@@ -8,7 +8,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
-from tools.io import ask_for_place, ask_for_dates
 from tools.selector import select_lang, set_date_range, set_place, get_next_page_button, get_property_number
 from tools.validator import clean_property_card
 from config.config import webpage_url
@@ -16,7 +15,7 @@ from config.xpaths import searchButtonXPATH, hotelPageElementsXPATH
 from tools.format import formatting
 
 
-def run():
+def run(input_place, arrivalDate, departureDate):
     logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.maximize_window()
@@ -29,10 +28,8 @@ def run():
     selected_lang = select_lang(driver)
     print(f"Selected Lang: {selected_lang}")
 
-    input_place = ask_for_place()
     set_place(driver, input_place)
 
-    arrivalDate, departureDate = ask_for_dates()
     set_date_range(driver, arrivalDate, departureDate)
 
     searchButton = driver.find_element(By.XPATH, searchButtonXPATH)

@@ -1,25 +1,37 @@
 import optparse
+from tools.io import ask_for_place, ask_for_dates
 from src.dateResearcher import run
 
 
 def main():
     parser = optparse.OptionParser()
 
-    parser.add_option("-c", "--city", dest = "input_place",
+    parser.add_option("-c", "--city", dest = "city",
                       type = "str",
                       help = "[Country, City] to travel")
 
-    parser.add_option("-a", "--arrivalDate", dest = "arrivalDate",
+    parser.add_option("-a", "--arrivalDate", dest = "arrival",
                       type = "str",
                       help = "Arrival Date in format %Y-%d-%d")
 
-    parser.add_option("-d", "--departureDate", dest = "departureDate",
+    parser.add_option("-d", "--departureDate", dest = "departure",
                       type = "str",
                       help = "Departure Date in format %Y-%d-%d")
 
     (options, args) = parser.parse_args()
 
-    run()
+    if options.city == None:
+        input_place = ask_for_place()
+    else:
+        input_place = options.city
+
+    if (options.arrival == None) or (options.departure == None):
+        arrivalDate, departureDate = ask_for_dates()
+    else:
+        arrivalDate = options.arrival
+        departureDate = options.departure
+
+    run(input_place, arrivalDate, departureDate)
 
 
 if __name__== "__main__":
