@@ -85,7 +85,7 @@ def set_date_range(driver, arrivalDate, departureDate):
             driver.find_element(By.XPATH, f'//*[@id="frm"]/div[1]/div[2]/div[2]/div/div/div[2]').click()
 
 
-def set_place(driver, input_place):
+def set_place(driver, input_place, displayed_city):
     """
     Funtion to insert the trip place and click over
     any suggested option given by the webpage.
@@ -104,7 +104,10 @@ def set_place(driver, input_place):
         print(f"[{idx + 1}] {place}")
 
     try:
-        input_place_idx = int(input("Place Idx: "))
+        if displayed_city:
+            input_place_idx = displayed_city
+        else:
+            input_place_idx = int(input("Place Idx: "))
         assert len(displayedPlaces_arrange) >= input_place_idx
     except:
         logging.warn("The first suggestion has been selected by default because of a non valid index")

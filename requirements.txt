@@ -5,3 +5,4 @@ re
 selenium
 time
 webdriver_manager
+optparse
