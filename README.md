@@ -6,7 +6,7 @@ Easy approach with Selenium to get hotels from Booking webpage based on a `Count
 
 `pip install -r requirements.txt`
 
-## Execution
+## Execution (Visual)
 
 Two simple steps:
 - `python main.py`
@@ -15,6 +15,10 @@ Two simple steps:
     - Ingress the displayed index `[?]` of the suggested options or press `[Enter]` to select the first one by default.
   - `Arrival Date`
   - `Departure Date`
+
+## Execution (Command)
+
+`python3 main.py -c "Temuco, Chile" -a "2022-08-30" -d "2022-09-02" -o 1`
 
 ## Example
 
