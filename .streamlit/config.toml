@@ -1,0 +1,20 @@
+# Theme mapped from the shared personal-projects UI standard
+# (~/code/personal/DESIGN_SYSTEM.md). Keep in sync with
+# src/booking_booking/webapp/theme.py by hand - see that module's docstring.
+[theme]
+base = "dark"
+primaryColor = "#6c63ff"                    # accent
+backgroundColor = "#0f0f1a"                 # bg
+secondaryBackgroundColor = "#1a1a2e"        # surface
+textColor = "#e2e8f0"                       # text
+linkColor = "#6c63ff"                       # accent (standard: links use accent)
+font = "Segoe UI, system-ui, sans-serif"
+baseFontWeight = 500                        # body/label weight (500-600 range)
+headingFontWeights = "700"                  # headings trend 700-800
+baseRadius = "12px"                         # radius
+borderColor = "#2a2a4a"                     # border
+dataframeHeaderBackgroundColor = "#16213e"  # surface2
+greenColor = "#22c55e"                      # green - success/positive, best-value badges
+yellowColor = "#f59e0b"                     # yellow - warnings, price-outlier flags
+redColor = "#ef4444"                        # red - errors (WAF-blocked, no-results)
+showWidgetBorder = true                     # bordered inputs/containers approximate the "card" look
