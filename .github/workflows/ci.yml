@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install package with dev dependencies
+        run: pip install -e ".[dev]"
+      - name: Lint
+        run: ruff check src tests
+      - name: Check formatting
+        run: ruff format --check src tests
+      # Only unit tests run here (tests/unit, fixture-based, no network access).
+      # tests/integration hits the real Booking.com site, which fronts all
+      # traffic with an AWS WAF bot challenge that escalates and blocks
+      # repeated automated requests from the same IP - exactly what a CI
+      # runner would look like to it. Run those manually and sparingly:
+      #   pytest tests/integration -v -m live
+      - name: Unit tests
+        run: pytest tests/unit -v
